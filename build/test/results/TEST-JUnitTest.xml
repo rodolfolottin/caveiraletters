@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="lottin" name="JUnitTest" skipped="0" tests="2" time="0.12" timestamp="2015-03-28T20:34:30">
+<testsuite errors="0" failures="0" hostname="lottin" name="JUnitTest" skipped="0" tests="2" time="0.055" timestamp="2015-03-29T16:57:36">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -12,7 +12,7 @@
     <property name="ant.core.lib" value="/usr/local/netbeans-8.0.1/extide/ant/lib/ant.jar" />
     <property name="javadoc.windowtitle" value="" />
     <property name="libs.jsp-compilation.javadoc" value="" />
-    <property name="user.dir" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters" />
+    <property name="user.dir" value="/home/rodolfolottin/git repositories/caveiraletters" />
     <property name="libs.javaee-api-7.0.src" value="" />
     <property name="java.vm.version" value="24.76-b04" />
     <property name="libs.DataBindingME.classpath" value="/usr/local/netbeans-8.0.1/mobility/modules/ext/netbeans_databindingme.jar" />
@@ -62,7 +62,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner JUnitTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build/test/results/TEST-JUnitTest.xml crashfile=/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build/junitvmwatcher4113369707457274236.properties propsfile=/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build/junit6444761562220910057.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner JUnitTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/rodolfolottin/git repositories/caveiraletters/build/test/results/TEST-JUnitTest.xml crashfile=/home/rodolfolottin/git repositories/caveiraletters/build/junitvmwatcher3956768532638130981.properties propsfile=/home/rodolfolottin/git repositories/caveiraletters/build/junit6549804234061153513.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -104,7 +104,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="/" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="ant.file.CaveiraLetters-impl" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters/nbproject/build-impl.xml" />
+    <property name="ant.file.CaveiraLetters-impl" value="/home/rodolfolottin/git repositories/caveiraletters/nbproject/build-impl.xml" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:/usr/local/netbeans-8.0.1/platform/modules/ext/junit-4.10.jar" />
@@ -122,7 +122,7 @@
     <property name="ant.home" value="/usr/local/netbeans-8.0.1/extide/ant" />
     <property name="libs.junit_4.src" value="/usr/local/netbeans-8.0.1/java/docs/junit-4.10-sources.jar" />
     <property name="libs.testng.classpath" value="/usr/local/netbeans-8.0.1/platform/modules/ext/testng-6.8.1-dist.jar" />
-    <property name="ant.file.CaveiraLetters" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build.xml" />
+    <property name="ant.file.CaveiraLetters" value="/home/rodolfolottin/git repositories/caveiraletters/build.xml" />
     <property name="libs.absolutelayout.maven-pom" value="" />
     <property name="ant.java.version" value="1.7" />
     <property name="java.library.path" value="/usr/lib/jvm/java-7-oracle/jre/lib/amd64:/usr/lib/jvm/java-7-oracle/jre/lib/i386::/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib" />
@@ -133,7 +133,7 @@
     <property name="libs.spring-framework400.src" value="" />
     <property name="libs.PostgreSQLDriver.src" value="" />
     <property name="sun.arch.data.model" value="64" />
-    <property name="basedir" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters" />
+    <property name="basedir" value="/home/rodolfolottin/git repositories/caveiraletters" />
     <property name="libs.jpa20-persistence.maven-pom" value="" />
     <property name="jar.compress" value="false" />
     <property name="libs.javaee-web-api-7.0.classpath" value="/usr/local/netbeans-8.0.1/enterprise/modules/ext/javaee-web-api-7.0.jar" />
@@ -178,7 +178,7 @@
     <property name="libs.spring-webmvc4.0.maven-pom" value="" />
     <property name="libs.spring-framework300.src" value="" />
     <property name="libs.jstl.src" value="" />
-    <property name="empty.dir" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build/empty" />
+    <property name="empty.dir" value="/home/rodolfolottin/git repositories/caveiraletters/build/empty" />
     <property name="version-output" value="java version &quot;1.7" />
     <property name="test.binarytestincludes" value="" />
     <property name="libs.hibernate4-persistencemodelgen.src" value="" />
@@ -220,7 +220,7 @@
     <property name="libs.jsp-compiler.classpath" value="/usr/local/netbeans-8.0.1/enterprise/ant/extra/jspcompile.jar" />
     <property name="javac.processorpath" value="" />
     <property name="javac.compilerargs" value="" />
-    <property name="ant.file" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build.xml" />
+    <property name="ant.file" value="/home/rodolfolottin/git repositories/caveiraletters/build.xml" />
     <property name="libs.beans-binding.maven-pom" value="" />
     <property name="libs.hibernate4-support.javadoc" value="/usr/local/netbeans-8.0.1/java/modules/ext/docs/javax.persistence-2.1.0-doc.zip" />
     <property name="libs.jsf12.classpath" value="/usr/local/netbeans-8.0.1/enterprise/modules/ext/jsf-1_2/commons-beanutils.jar:/usr/local/netbeans-8.0.1/enterprise/modules/ext/jsf-1_2/commons-collections.jar:/usr/local/netbeans-8.0.1/enterprise/modules/ext/jsf-1_2/commons-digester.jar:/usr/local/netbeans-8.0.1/enterprise/modules/ext/jsf-1_2/commons-logging.jar:/usr/local/netbeans-8.0.1/enterprise/modules/ext/jsf-1_2/jsf-api.jar:/usr/local/netbeans-8.0.1/enterprise/modules/ext/jsf-1_2/jsf-impl.jar" />
@@ -297,7 +297,7 @@
     <property name="libs.testng.maven-pom" value="" />
     <property name="ant.file.type.CaveiraLetters-impl" value="file" />
     <property name="libs.jaxb.src" value="" />
-    <property name="work.dir" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters" />
+    <property name="work.dir" value="/home/rodolfolottin/git repositories/caveiraletters" />
     <property name="libs.jaxb.classpath" value="/usr/local/netbeans-8.0.1/ide/modules/ext/jaxb/jaxb-impl.jar:/usr/local/netbeans-8.0.1/ide/modules/ext/jaxb/jaxb-xjc.jar:/usr/local/netbeans-8.0.1/ide/modules/ext/jaxb/jaxb1-impl.jar:/usr/local/netbeans-8.0.1/ide/modules/ext/jaxb/activation.jar:/usr/local/netbeans-8.0.1/ide/modules/ext/jaxb/api/jaxb-api.jar:/usr/local/netbeans-8.0.1/ide/modules/ext/jaxb/api/jsr173_1.0_api.jar" />
     <property name="do.depend" value="false" />
     <property name="dist.javadoc.dir" value="dist/javadoc" />
@@ -316,7 +316,7 @@
     <property name="junit.forkmode" value="perTest" />
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-7-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-7-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-7-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-7-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-7-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-7-oracle/jre/classes" />
     <property name="javac.target" value="1.7" />
-    <property name="built-jar.properties" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build/built-jar.properties" />
+    <property name="built-jar.properties" value="/home/rodolfolottin/git repositories/caveiraletters/build/built-jar.properties" />
     <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="src.dir" value="src" />
     <property name="libs.jpa2-persistence.src" value="" />
@@ -362,7 +362,7 @@
     <property name="libs.jpa2-persistence.javadoc" value="/usr/local/netbeans-8.0.1/java/modules/ext/docs/javax.persistence-2.1.0-doc.zip" />
     <property name="libs.DataBindingME.javadoc" value="/usr/local/netbeans-8.0.1/mobility/modules/docs/netbeans_databindingme-api.zip" />
     <property name="apple.laf.useScreenMenuBar" value="true" />
-    <property name="java.class.path" value="/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build/classes:/usr/local/netbeans-8.0.1/platform/modules/ext/junit-4.10.jar:/home/rodolfolottin/NetBeansProjects/CaveiraLetters/build/test/classes:/usr/local/netbeans-8.0.1/extide/ant/lib/ant-launcher.jar:/usr/local/netbeans-8.0.1/extide/ant/lib/ant.jar:/usr/local/netbeans-8.0.1/extide/ant/lib/ant-junit.jar:/usr/local/netbeans-8.0.1/extide/ant/lib/ant-junit4.jar" />
+    <property name="java.class.path" value="/home/rodolfolottin/git repositories/caveiraletters/build/classes:/usr/local/netbeans-8.0.1/platform/modules/ext/junit-4.10.jar:/home/rodolfolottin/git repositories/caveiraletters/build/test/classes:/usr/local/netbeans-8.0.1/extide/ant/lib/ant-launcher.jar:/usr/local/netbeans-8.0.1/extide/ant/lib/ant.jar:/usr/local/netbeans-8.0.1/extide/ant/lib/ant-junit.jar:/usr/local/netbeans-8.0.1/extide/ant/lib/ant-junit4.jar" />
     <property name="do.mkdist" value="true" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.jpa20-persistence.classpath" value="/usr/local/netbeans-8.0.1/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar" />
@@ -412,12 +412,8 @@
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/usr/local/netbeans-8.0.1/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="JUnitTest" name="isObject" time="0.053" />
-  <testcase classname="JUnitTest" name="retornaInteiro" time="0.01">
-    <error message="model.Baralho.getCartaAleatoria()I" type="java.lang.NoSuchMethodError">java.lang.NoSuchMethodError: model.Baralho.getCartaAleatoria()I
-	at JUnitTest.retornaInteiro(JUnitTest.java:28)
-</error>
-  </testcase>
+  <testcase classname="JUnitTest" name="retornaNome" time="0.002" />
+  <testcase classname="JUnitTest" name="retornaMesmaClasse" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

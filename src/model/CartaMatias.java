@@ -20,15 +20,15 @@ public class CartaMatias extends Carta {
     }
 
     @Override
-    public  boolean calcular(Carta adversaria) {
+    public  int calcular(Carta adversaria) {
         
         if (valor > adversaria.getValor()) {
-            return true;
+            return 0;
         } else if (valor < adversaria.getValor()) {
-            return false;
+            return 1;
         } else {
             //se for igual
-            return false;
+            return 2;
         }
     }  
     

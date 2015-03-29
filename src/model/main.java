@@ -12,8 +12,8 @@ package model;
 public class main {
     
     public static void main (String[] args) {
-        Baralho b = new Baralho();
-        System.out.println(b.embaralharCartas());
+        Jogador j = new Jogador(1, "Rodolfo");
+        System.out.println("Nome: " + j.getNome());
     }
     
 }
