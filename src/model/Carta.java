@@ -28,7 +28,7 @@ public abstract class Carta {
         this.quantidade = quantidade;
     }
     
-    public abstract boolean calcular(Carta adversaria);
+    public abstract int calcular(Carta adversaria);
     
     //public abstract void acaoCarta();
 
