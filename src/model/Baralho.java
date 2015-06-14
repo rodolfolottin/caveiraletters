@@ -5,6 +5,7 @@
  */
 package model;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,10 +16,9 @@ import javax.swing.ImageIcon;
  *
  * @author rodolfolottin
  */
-public class Baralho {
+public class Baralho implements Jogada {
 
-    //preciso instanciar carta?
-    private List <Carta> cartas;
+    protected List <Carta> cartas;
     
     public Baralho() {
         this.cartas = populaBaralho();
@@ -29,7 +29,7 @@ public class Baralho {
         
         CartaBaiano baiano = new CartaBaiano(0, "Baiano", 1, new ImageIcon("images/baiano1.jpg"), 5);
         singleCards.add(baiano);
-        
+
         CartaRocha rocha = new CartaRocha(1, "Sgt. Rocha", 2, new ImageIcon("images/rocha2.jpg"), 2);
         singleCards.add(rocha);
         
@@ -50,7 +50,7 @@ public class Baralho {
         
         CartaPapa papa = new CartaPapa(7, "Papa", 8, new ImageIcon("images/papa8.jpg"), 1);
         singleCards.add(papa);
-        
+  
         return singleCards;
     }
 

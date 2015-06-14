@@ -5,13 +5,14 @@
  */
 package model;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
 import java.util.List;
 
 /**
  *
  * @author rodolfolottin
  */
-public class Jogador {
+public class Jogador implements Jogada {
     
     private int id;
     private String nome;

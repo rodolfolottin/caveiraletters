@@ -5,6 +5,7 @@
  */
 package model;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -12,7 +13,7 @@ import javax.swing.ImageIcon;
  *
  * @author rodolfolottin
  */
-public abstract class Carta {
+public abstract class Carta implements Jogada {
 
     protected int indice;
     protected String nome;
@@ -28,9 +29,16 @@ public abstract class Carta {
         this.quantidade = quantidade;
     }
     
-    public abstract int calcular(Carta adversaria);
-    
-    //public abstract void acaoCarta();
+    public boolean calcular(Carta adversaria) {
+        if (valor > adversaria.getValor()) {
+            return true;
+        } else if (valor == adversaria.getValor()) {
+            return false;
+        } else {
+            return false;
+        }
+        
+    }
 
     public int getIndice() {
         return indice;

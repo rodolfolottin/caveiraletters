@@ -18,17 +18,5 @@ public class CartaNascimento extends Carta {
         super(indice, nome, valor, image, quantidade);
     }
 
-    @Override
-    public  int calcular(Carta adversaria) {
-        
-        if (valor > adversaria.getValor()) {
-            return 0;
-        } else if (valor < adversaria.getValor()) {
-            return 1;
-        } else {
-            //se for igual
-            return 2;
-        }
-    }  
 }
     

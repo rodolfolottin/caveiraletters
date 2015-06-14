@@ -5,10 +5,12 @@
  */
 package model;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
+
 /**
  *
  * @author rodolfolottin
  */
-public class Mesa {
+public class Mesa implements Jogada {
     
 }

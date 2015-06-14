@@ -12,8 +12,7 @@ package model;
 public class main {
     
     public static void main (String[] args) {
-        Jogador j = new Jogador(1, "Rodolfo");
-        System.out.println("Nome: " + j.getNome());
+        System.out.println(args);
     }
     
 }
