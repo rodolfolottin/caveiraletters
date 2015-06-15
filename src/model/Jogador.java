@@ -22,6 +22,10 @@ public class Jogador implements Jogada {
         this.id = id;
         this.nome = nome;
     }
+    
+    public Jogador(String nome) {
+        this.nome = nome;
+    }
 
     public int getId() {
         return id;

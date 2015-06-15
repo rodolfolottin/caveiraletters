@@ -78,7 +78,7 @@ public class AtorNetGames implements OuvidorProxy{
     
     @Override
     public void iniciarNovaPartida(Integer posicao) {
-        atorJogador.iniciarPartida();
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -98,7 +98,8 @@ public class AtorNetGames implements OuvidorProxy{
 
     @Override
     public void tratarConexaoPerdida() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       atorJogador.exibeMensagem("Conexão foi perdida!");
+       atorJogador.limparTodosCampos();
     }
 
     @Override

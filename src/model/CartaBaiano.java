@@ -16,5 +16,4 @@ public class CartaBaiano extends Carta {
     public CartaBaiano(int indice, String nome, int valor, Icon image, int quantidade) {
         super(indice, nome, valor, image, quantidade);
     }  
-    
 }
