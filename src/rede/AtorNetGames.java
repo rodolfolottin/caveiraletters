@@ -13,9 +13,12 @@ import br.ufsc.inf.leobr.cliente.exception.JahConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AtorJogador;
+import model.Jogador;
 
 /**
  *
@@ -74,6 +77,28 @@ public class AtorNetGames implements OuvidorProxy{
         } catch (NaoJogandoException ex) {
             atorJogador.exibeMensagem(ex.getMessage());
         }
+    }
+    
+    public List<Jogador> getJogadores() {
+        List<Jogador> jogadores = new ArrayList<Jogador>();
+        if (atorJogador.getJogadorAtual().getNome().equals(proxy.obterNomeAdversario(1))) {
+            for (int i = 1; i <= 2; i++) {
+                Jogador jogador = null;
+                try {
+                    jogador = new Jogador(i, proxy.obterNomeAdversario(i));
+                    jogadores.add(jogador);
+                } catch (Exception e){
+                    System.out.println("Sem jogadores suficientes");
+                }
+            }
+        } else {
+            Jogador jogador = atorJogador.getJogadorAtual();
+            jogadores.add(jogador);
+            jogador = new Jogador(proxy.obterNomeAdversario(2));
+            jogadores.add(jogador);
+        }
+        
+        return jogadores;
     }
     
     @Override

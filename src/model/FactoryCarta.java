@@ -11,10 +11,10 @@ import javax.swing.ImageIcon;
  *
  * @author rodolfolottin
  */
-public final class FactoryCarta {
+public class FactoryCarta {
     
     public static Carta makeBaiano() {
-        return new Carta(1, "Baiano", 1, new ImageIcon("images/baiano1.jpg"), 5);
+        return new Carta(1, "Baiano", 1, new ImageIcon("images/baiano1.jpg"), 1);
     }
     
     public static Carta makeSgtRocha() {

@@ -11,9 +11,9 @@ package model;
  */
 public class main {
     
-//    public static void main (String[] args) {
-//        Baralho baralho = new Baralho();
-//        System.out.println(baralho.getCartas());
-//    }
+    public static void main (String[] args) {
+        Baralho baralho = new Baralho();
+        System.out.println(baralho.getCartaAleatoria().getImage());
+    }
     
 }

@@ -156,7 +156,7 @@ public class JMesa extends javax.swing.JFrame {
     }
     
     private void jMenuItemIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIniciarPartidaActionPerformed
-        //atorJogador.iniciarPartida();
+        atorJogador.iniciarPartida();
     }//GEN-LAST:event_jMenuItemIniciarPartidaActionPerformed
 
     private void jMenuItemDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDesconectarActionPerformed
