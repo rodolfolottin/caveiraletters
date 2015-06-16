@@ -12,7 +12,8 @@ import javax.swing.ImageIcon;
  * @author rodolfolottin
  */
 public class FactoryCarta {
-    
+    //how to put images
+    //ImageIcon(this.getClass().getResource("/images/filename.png"));
     public static Carta makeBaiano() {
         return new Carta(1, "Baiano", 1, new ImageIcon("images/baiano1.jpg"), 1);
     }
