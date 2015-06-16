@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  *
  * @author rodolfolottin
  */
-public abstract class Carta implements Jogada {
+public class Carta implements Jogada {
 
     protected int indice;
     protected String nome;
@@ -27,17 +27,6 @@ public abstract class Carta implements Jogada {
         this.valor = valor;
         this.image = image;
         this.quantidade = quantidade;
-    }
-    
-    public boolean calcular(Carta adversaria) {
-        if (valor > adversaria.getValor()) {
-            return true;
-        } else if (valor == adversaria.getValor()) {
-            return false;
-        } else {
-            return false;
-        }
-        
     }
 
     public int getIndice() {

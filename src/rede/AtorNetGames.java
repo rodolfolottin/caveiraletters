@@ -83,7 +83,8 @@ public class AtorNetGames implements OuvidorProxy{
 
     @Override
     public void finalizarPartidaComErro(String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       atorJogador.exibeMensagem(message);
+       atorJogador.limparTodosCampos();
     }
 
     @Override
@@ -104,7 +105,7 @@ public class AtorNetGames implements OuvidorProxy{
 
     @Override
     public void tratarPartidaNaoIniciada(String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        atorJogador.exibeMensagem(message);
     }
     
 }

@@ -69,4 +69,36 @@ public class AtorJogador {
     private void atualizarVisibilidadeTela(int mode) {
         interfaceMesa.atualizarVisibilidadeTela(mode);
     }
+    
+    public Jogador getJogadorAtual() {
+        return jogadorAtual;
+    }
+
+    public void setJogadorAtual(Jogador jogadorAtual) {
+        this.jogadorAtual = jogadorAtual;
+    }
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+
+    public AtorNetGames getRede() {
+        return rede;
+    }
+
+    public void setRede(AtorNetGames rede) {
+        this.rede = rede;
+    }
+
+    public boolean isConectado() {
+        return conectado;
+    }
+    
+    public void setConectado(boolean conectado) {
+        this.conectado = conectado;
+    }
 }

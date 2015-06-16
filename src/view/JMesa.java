@@ -118,8 +118,8 @@ public class JMesa extends javax.swing.JFrame {
         String nomeAtual =  this.getNomeJogador();
         String servidor = this.getNomeServidor();
 
-        boolean conectou = atorJogador.conectar(servidor, nomeAtual);
-        //atorJogador.setJogadorAtual(new Jogador(nomeAtual));
+        boolean conectou = atorJogador.conectar(nomeAtual, servidor);
+        atorJogador.setJogadorAtual(new Jogador(nomeAtual));
 
         if (conectou) {
             this.adicionarTitulo(nomeAtual);
@@ -166,6 +166,7 @@ public class JMesa extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+   
     public static void main(String args[]) {
   
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -27,34 +27,26 @@ public class Baralho implements Jogada {
     public List singleCards() {
         List<Carta> singleCards = new ArrayList<Carta>();
         
-        CartaBaiano baiano = new CartaBaiano(0, "Baiano", 1, new ImageIcon("images/baiano1.jpg"), 5);
+        Carta baiano = FactoryCarta.makeBaiano();
         singleCards.add(baiano);
-
-        CartaRocha rocha = new CartaRocha(1, "Sgt. Rocha", 2, new ImageIcon("images/rocha2.jpg"), 2);
+        Carta rocha = FactoryCarta.makeSgtRocha();
         singleCards.add(rocha);
-        
-        CartaNeto neto = new CartaNeto(2, "Neto", 3, new ImageIcon("images/neto3.jpg"), 2);
+        Carta neto = FactoryCarta.makeNeto();
         singleCards.add(neto);
-        
-        CartaFabio fabio = new CartaFabio(3, "Cap. Fabio", 4, new ImageIcon("images/fabio4.jpg"), 2);
+        Carta fabio = FactoryCarta.makeFabio();
         singleCards.add(fabio);
-        
-        CartaMatias matias = new CartaMatias(4, "Matias", 5, new ImageIcon("images/matias5.jpg"), 2);
+        Carta matias = FactoryCarta.makeMatias();
         singleCards.add(matias);
-        
-        CartaNascimento nascimento = new CartaNascimento(5, "Cap. Nascimento", 6, new ImageIcon("images/nascimento6.jpg"), 1);
+        Carta nascimento = FactoryCarta.makeNascimento();
         singleCards.add(nascimento);
-        
-        CartaOliveira oliveira = new CartaOliveira(6, "Cap. Oliveira", 7, new ImageIcon("images/oliveira7.jpg"), 1);
+        Carta oliveira = FactoryCarta.makeOliveira();
         singleCards.add(oliveira);
-        
-        CartaPapa papa = new CartaPapa(7, "Papa", 8, new ImageIcon("images/papa8.jpg"), 1);
+        Carta papa = FactoryCarta.makePapa();
         singleCards.add(papa);
-  
+        
         return singleCards;
     }
 
-    
     public List populaBaralho() {
         
         List<Carta> saida = new ArrayList<>();     
@@ -67,6 +59,10 @@ public class Baralho implements Jogada {
         }        
             
         return saida;
+    }
+    
+    public void embaralharCartas() {
+        Collections.shuffle(cartas);
     }
     
     public Carta getCartaAleatoria(){

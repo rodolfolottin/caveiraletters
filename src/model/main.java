@@ -5,15 +5,15 @@
  */
 package model;
 
-import javax.swing.Icon;
-
 /**
  *
  * @author rodolfolottin
  */
-public class CartaBaiano extends Carta {
-
-    public CartaBaiano(int indice, String nome, int valor, Icon image, int quantidade) {
-        super(indice, nome, valor, image, quantidade);
-    }  
+public class main {
+    
+//    public static void main (String[] args) {
+//        Baralho baralho = new Baralho();
+//        System.out.println(baralho.getCartas());
+//    }
+    
 }
