@@ -24,7 +24,7 @@ public class Mesa implements Jogada {
     private Baralho baralho;
     private List<Rodada> rodadas;
     private Rodada rodadaAtual;
-    private List<Carta> lixo;
+    private Carta lixo;
 
     public Mesa() {
         baralho = new Baralho();
@@ -110,11 +110,11 @@ public class Mesa implements Jogada {
         this.rodadaAtual = rodadaAtual;
     }
     
-    public List<Carta> getLixo() {
+    public Carta getCartaLixo() {
         return lixo;
     }
 
-    public void setLixo(List<Carta> lixo) {
+    public void setCartaLixo(Carta lixo) {
         this.lixo = lixo;
     }
     
@@ -128,27 +128,28 @@ public class Mesa implements Jogada {
         jogador2.setId(2);
     }
     
-    public void distribuirCartasNaMesa() {
+    public void distribuirCartasJogadores() {
         List<Carta> listaDeCartasJogadorA = this.distribuirCartas();
         this.jogador1.setCartas(listaDeCartasJogadorA);
         
         List<Carta> listaDeCartasJogadorB = this.distribuirCartas();       
         this.jogador2.setCartas(listaDeCartasJogadorB);
-        
-        List<Carta> listaDeCartasDoLixo  = this.distribuirCartas();       
-        this.setLixo(listaDeCartasDoLixo);
     }
     
     public List<Carta> distribuirCartas() {
         List<Carta> listaDeCartas = new ArrayList<Carta>();
         
-        for (int b = 0; b < 1; b++) {
-            Carta carta = baralho.getCartaAleatoria();
-            listaDeCartas.add(carta);
-            this.baralho.getCartas().remove(carta);             
-        }
+        Carta carta = this.baralho.getCartaAleatoria();
+        listaDeCartas.add(carta);
+        this.baralho.getCartas().remove(carta);             
         
         return listaDeCartas;
+    }
+    
+    public void criarCartaLixo(){
+        Carta cartaLixo = this.baralho.getCartas().get(5);
+        this.baralho.getCartas().remove(cartaLixo);
+        this.setCartaLixo(cartaLixo);
     }
     
     public void iniciarRodada(Jogador jogadorDaVez) {
@@ -161,19 +162,11 @@ public class Mesa implements Jogada {
         this.baralho.embaralharCartas();
     }
     
-    /*
-    public boolean calcular(Carta adversaria) {
-        if (valor > adversaria.getValor()) {
-            return true;
-        } else if (valor == adversaria.getValor()) {
-            return false;
-        } else {
-            return false;
-        }   
+    public boolean verificarBaralho(Baralho baralho) {
+        return !baralho.getCartas().isEmpty();
     }
-    */
     
-    //public funçãoAoJogarCarta() {
+    public void funçãoAoJogarCarta() {
     //identifico que carta a pessoa comprou, se comprou o oliveira, só poderá jogar ele
         //verifica se a pessoa tem duas cartas na mao
         //verifica se acabou partida
@@ -212,5 +205,5 @@ public class Mesa implements Jogada {
                     //nao faz nada, só é obrigado a ser jogador quando tiver nascimento e matias na mao
                 //nome = papa
                     //jogador perde
-    //}
+    }
 }

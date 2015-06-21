@@ -16,7 +16,7 @@ public class FactoryCarta implements Jogada {
     //how to put images
     //ImageIcon(this.getClass().getResource("/images/filename.png"));
     public Carta makeBaiano() {
-        return new Carta(1, "Baiano", 1, new javax.swing.ImageIcon(getClass().getResource("/images/baiano1.jpg")), 1);
+        return new Carta(1, "Baiano", 1, new javax.swing.ImageIcon(getClass().getResource("/images/baiano1.jpg")), 5);
     }
     
     public Carta makeSgtRocha() {

@@ -101,7 +101,7 @@ public class AtorJogador {
     
     public void iniciarNovaPartida() {
         mesa.embaralhar();
-        mesa.distribuirCartasNaMesa();
+        mesa.distribuirCartasJogadores();
         mesa.setStatus(Mesa.StatusMesa.INICAR_PARTIDA);
         mesa.setJogadorDaVez(jogadorAtual);
         mesa.iniciarRodada(jogadorAtual);
@@ -126,7 +126,19 @@ public class AtorJogador {
             }
         }        
     }
-
+    
+    public boolean efetuarCompra(Baralho baralho) {
+        boolean retorno = false;
+        
+        /*TODO*/
+        
+        return retorno;
+    }
+    
+    public boolean tratarExecucaoJogada() {
+        return this.ehJogadorDaVez(jogadorAtual) && this.isConectado();
+    }
+    
     public void limparTodosCampos() {
         interfaceMesa.limpaTodosCampos();
     }
@@ -137,5 +149,9 @@ public class AtorJogador {
     
     public void enviarJogada(Jogada jogada) {
         rede.enviarJogada(jogada);
+    }
+
+    public boolean ehJogadorDaVez(Jogador jogador) {
+        return (jogador.getNome().equals(mesa.getJogadorDaVez().getNome()));
     }
 }
