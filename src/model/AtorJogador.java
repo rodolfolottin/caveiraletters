@@ -130,7 +130,15 @@ public class AtorJogador {
     public boolean efetuarCompra(Baralho baralho) {
         boolean retorno = false;
         
-        /*TODO*/
+        if (tratarExecucaoJogada()) {
+            if (mesa.comprarCarta(baralho, jogadorAtual)) {
+                retorno = true;
+            } else {
+                interfaceMesa.exibeMensagem("Você já atingiu o limite de cartas ou o baralho está vazio!");
+            }
+        } else {
+            interfaceMesa.exibeMensagem("Ainda não é sua vez!");
+        }
         
         return retorno;
     }

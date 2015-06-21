@@ -162,6 +162,26 @@ public class Mesa implements Jogada {
         this.baralho.embaralharCartas();
     }
     
+    public boolean comprarCarta(Baralho baralho, Jogador jogador) {
+        boolean retorno = false;
+        List<Carta> cartasJogador = jogador.getCartas();
+
+        if (!baralho.getCartas().isEmpty() && cartasJogador.size() < 2) {
+            
+            Carta carta = baralho.getCartaAleatoria();
+            baralho.getCartas().remove(carta);
+                        
+            cartasJogador.add(carta);
+            jogador.setCartas(cartasJogador);
+            
+            retorno = true;
+        } else {
+            
+        }
+        
+        return retorno;
+    }
+    
     public boolean verificarBaralho(Baralho baralho) {
         return !baralho.getCartas().isEmpty();
     }
