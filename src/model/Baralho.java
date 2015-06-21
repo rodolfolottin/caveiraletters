@@ -26,22 +26,23 @@ public class Baralho implements Jogada {
     
     public List singleCards() {
         List<Carta> singleCards = new ArrayList<Carta>();
+        FactoryCarta facCarta = new FactoryCarta();
         
-        Carta baiano = FactoryCarta.makeBaiano();
+        Carta baiano = facCarta.makeBaiano();
         singleCards.add(baiano);
-        Carta rocha = FactoryCarta.makeSgtRocha();
+        Carta rocha = facCarta.makeSgtRocha();
         singleCards.add(rocha);
-        Carta neto = FactoryCarta.makeNeto();
+        Carta neto = facCarta.makeNeto();
         singleCards.add(neto);
-        Carta fabio = FactoryCarta.makeFabio();
+        Carta fabio = facCarta.makeFabio();
         singleCards.add(fabio);
-        Carta matias = FactoryCarta.makeMatias();
+        Carta matias = facCarta.makeMatias();
         singleCards.add(matias);
-        Carta nascimento = FactoryCarta.makeNascimento();
+        Carta nascimento = facCarta.makeNascimento();
         singleCards.add(nascimento);
-        Carta oliveira = FactoryCarta.makeOliveira();
+        Carta oliveira = facCarta.makeOliveira();
         singleCards.add(oliveira);
-        Carta papa = FactoryCarta.makePapa();
+        Carta papa = facCarta.makePapa();
         singleCards.add(papa);
         
         return singleCards;

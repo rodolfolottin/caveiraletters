@@ -5,9 +5,12 @@
  */
 package view;
 
+import java.awt.Cursor;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import model.AtorJogador;
 import model.Jogador;
+import model.Mesa;
 
 /**
  *
@@ -22,6 +25,7 @@ public class JMesa extends javax.swing.JFrame {
     public JMesa() {
         initComponents();
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.atualizarVisibilidadeTela(START);
         atorJogador = new AtorJogador(this);
     }
@@ -36,6 +40,7 @@ public class JMesa extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelMesa = new javax.swing.JPanel();
+        jPanelCompartilhado = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemConectar = new javax.swing.JMenuItem();
@@ -43,18 +48,37 @@ public class JMesa extends javax.swing.JFrame {
         jMenuItemDesconectar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(143, 0, 144));
 
-        jPanelMesa.setForeground(new java.awt.Color(219, 21, 255));
+        jPanelMesa.setBackground(new java.awt.Color(143, 0, 144));
+        jPanelMesa.setForeground(new java.awt.Color(251, 239, 253));
+        jPanelMesa.setToolTipText("");
+
+        jPanelCompartilhado.setBackground(new java.awt.Color(0, 68, 255));
+
+        javax.swing.GroupLayout jPanelCompartilhadoLayout = new javax.swing.GroupLayout(jPanelCompartilhado);
+        jPanelCompartilhado.setLayout(jPanelCompartilhadoLayout);
+        jPanelCompartilhadoLayout.setHorizontalGroup(
+            jPanelCompartilhadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 838, Short.MAX_VALUE)
+        );
+        jPanelCompartilhadoLayout.setVerticalGroup(
+            jPanelCompartilhadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 278, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanelMesaLayout = new javax.swing.GroupLayout(jPanelMesa);
         jPanelMesa.setLayout(jPanelMesaLayout);
         jPanelMesaLayout.setHorizontalGroup(
             jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(jPanelCompartilhado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelMesaLayout.setVerticalGroup(
             jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 579, Short.MAX_VALUE)
+            .addGroup(jPanelMesaLayout.createSequentialGroup()
+                .addGap(175, 175, 175)
+                .addComponent(jPanelCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Menu");
@@ -95,7 +119,7 @@ public class JMesa extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelMesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -114,7 +138,6 @@ public class JMesa extends javax.swing.JFrame {
     }
 
     public void conectar() {
-                
         String nomeAtual =  this.getNomeJogador();
         String servidor = this.getNomeServidor();
 
@@ -151,8 +174,65 @@ public class JMesa extends javax.swing.JFrame {
         }
     }
     
+    public void recebeMesa(Mesa mesa) {
+        if (mesa.getStatus().equals(Mesa.StatusMesa.INICAR_PARTIDA)) {
+            this.iniciarPartida(mesa);
+//            this.setNomeJogadoresLabel(mesa);
+            JOptionPane.showMessageDialog(this, "Uma nova partida vai iniciar");
+        }  else if (mesa.getStatus().equals(Mesa.StatusMesa.INICIAR_RODADA)) {
+//            this.iniciarRodada(mesa);
+        } 
+//        this.atualizaJogadorDaVez(mesa);
+        this.validate();
+    }
+    
+    private void iniciarPartida(Mesa mesa) {
+        this.atualizaCamposInicioPartida(mesa);
+    }
+    
+    private void atualizaCamposInicioPartida(Mesa mesa) {
+
+        limparPanelsCartas();
+
+        Jogador jogadorAtual = this.getJogadorAtualNaMesa(mesa);
+
+        this.atualizaCartasJogadorAtual(jogadorAtual);
+//        this.atualizaCartasAdversarios(jogadorAtual);
+//        this.atualizaCartaVira(mesa);
+//        iniciarRodada(mesa);
+        
+    }
+    
     public void limpaTodosCampos() {
-        //FUNÇÃO UTILIZADA PARA LIMPAR TODOS OS CAMPOS DA MESA
+//        this.limparCartasCompartilhadas();
+//        this.limparPlacar();
+//        this.limparPanelsCartasJogadores();
+//        this.limparTopo();
+    }
+    
+    private void limparPanelsCartas() {
+        //jPanelJogador.removeAll();
+        //jPanelAdversario.removeAll();
+    }
+    
+    private Jogador getJogadorAtualNaMesa(Mesa mesa) {
+        Jogador jogador1 = mesa.getJogador1();
+        Jogador jogador2 = mesa.getJogador2();
+        
+        if (this.atorJogador.getJogadorAtual().getNome().equals(jogador1.getNome())){
+            return jogador1;
+        } else {
+            return jogador2;
+        }
+    }
+    
+    private void atualizaCartasJogadorAtual(Jogador joga) {
+        for (int i = 0; i < joga.getCartas().size(); i++) {
+            JLabel jlabel = new JLabel(joga.getCartas().get(i).getImage());
+            jlabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//            jlabel.addMouseListener(new ClickCarta(joga.getCartas().get(i)));
+//            jPanelJogador.add(jlabel);
+        }     
     }
     
     private void jMenuItemIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIniciarPartidaActionPerformed
@@ -183,6 +263,7 @@ public class JMesa extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemConectar;
     private javax.swing.JMenuItem jMenuItemDesconectar;
     private javax.swing.JMenuItem jMenuItemIniciarPartida;
+    private javax.swing.JPanel jPanelCompartilhado;
     private javax.swing.JPanel jPanelMesa;
     // End of variables declaration//GEN-END:variables
 }

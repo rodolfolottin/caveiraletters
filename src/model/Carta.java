@@ -18,10 +18,10 @@ public class Carta implements Jogada {
     protected int indice;
     protected String nome;
     protected int valor;
-    protected Icon image;
+    protected ImageIcon image;
     protected int quantidade;
     
-    public Carta (int indice, String nome, int valor, Icon image, int quantidade) {
+    public Carta (int indice, String nome, int valor, ImageIcon image, int quantidade) {
         this.indice = indice;
         this.nome = nome;
         this.valor = valor;
@@ -53,11 +53,11 @@ public class Carta implements Jogada {
         this.valor = valor;
     }
 
-    public Icon getImage() {
+    public ImageIcon getImage() {
         return image;
     }
 
-    public void setImage(Icon image) {
+    public void setImage(ImageIcon image) {
         this.image = image;
     }
     

@@ -110,7 +110,21 @@ public class AtorJogador {
     }
 
     public void receberJogada(Jogada jogada) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (jogada instanceof Mesa) {
+            this.mesa = (Mesa) jogada;
+            this.setJogadorAtualIniciarPartida(mesa);
+            interfaceMesa.recebeMesa(mesa);
+        }
+    }
+    
+    protected void setJogadorAtualIniciarPartida(Mesa mesa) {
+        if (mesa.getStatus().equals(Mesa.StatusMesa.INICAR_PARTIDA)) {
+            for (Jogador jog : mesa.getJogadores()) {
+                if (jog.getNome().equals(jogadorAtual.getNome())) {
+                    jogadorAtual = jog;
+                }
+            }
+        }        
     }
 
     public void limparTodosCampos() {
