@@ -162,7 +162,7 @@ public class Mesa implements Jogada {
         this.baralho.embaralharCartas();
     }
     
-    public boolean comprarCarta(Baralho baralho, Jogador jogador) {
+    public boolean comprarCarta(Jogador jogador) {
         boolean retorno = false;
         List<Carta> cartasJogador = jogador.getCartas();
 
@@ -175,18 +175,16 @@ public class Mesa implements Jogada {
             jogador.setCartas(cartasJogador);
             
             retorno = true;
-        } else {
-            
         }
         
         return retorno;
     }
     
-    public boolean verificarBaralho(Baralho baralho) {
+    public boolean verificarBaralho() {
         return !baralho.getCartas().isEmpty();
     }
     
-    public void funçãoAoJogarCarta() {
+    public void identificarCarta() {
     //identifico que carta a pessoa comprou, se comprou o oliveira, só poderá jogar ele
         //verifica se a pessoa tem duas cartas na mao
         //verifica se acabou partida

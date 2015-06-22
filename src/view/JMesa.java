@@ -25,7 +25,7 @@ import model.Mesa;
  */
 public class JMesa extends javax.swing.JFrame {
 
-    AtorJogador atorJogador;
+    protected AtorJogador atorJogador;
     protected static final int START = 1;
     protected static final int CONECTADO = 2;
     
@@ -69,15 +69,16 @@ public class JMesa extends javax.swing.JFrame {
 
         jLabelBaralhoCompartilhado.addMouseListener(new MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                clicouBaralho(atorJogador.getMesa().getBaralho(), getJogadorAtualNaMesa(atorJogador.getMesa()));
+                clicouBaralho(getJogadorAtualNaMesa(atorJogador.getMesa()));
             }
         });
 
         jPanelJogadorAdversario.setBackground(new java.awt.Color(143, 0, 144));
-        jPanelJogadorAdversario.setLayout(new java.awt.GridBagLayout());
+        jPanelJogadorAdversario.setMaximumSize(new java.awt.Dimension(32767, 32767));
+        jPanelJogadorAdversario.setLayout(new java.awt.GridLayout());
 
         jPanelJogadorAtual.setBackground(new java.awt.Color(143, 0, 144));
-        jPanelJogadorAtual.setLayout(new java.awt.GridBagLayout());
+        jPanelJogadorAtual.setLayout(new java.awt.GridLayout(1, 3, 5, 5));
 
         javax.swing.GroupLayout jPanelMesaLayout = new javax.swing.GroupLayout(jPanelMesa);
         jPanelMesa.setLayout(jPanelMesaLayout);
@@ -86,45 +87,47 @@ public class JMesa extends javax.swing.JFrame {
             .addGroup(jPanelMesaLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelJogadorAdversario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelMesaLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanelJogadorAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanelMesaLayout.createSequentialGroup()
-                                .addComponent(jLabelBaralhoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelLixoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(40, 40, 40)))
-                .addContainerGap())
+                        .addComponent(jLabelBaralhoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                        .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelAdversarioCompartilhado, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                            .addComponent(jLabelJogadorCompartilhado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(233, 233, 233)
+                        .addComponent(jLabelLixoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
+                        .addComponent(jPanelJogadorAdversario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
-                .addContainerGap(395, Short.MAX_VALUE)
-                .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelJogadorCompartilhado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelAdversarioCompartilhado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(389, 389, 389))
+                .addContainerGap()
+                .addComponent(jPanelJogadorAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelMesaLayout.setVerticalGroup(
             jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMesaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelJogadorAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelJogadorAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
-                            .addGap(17, 17, 17)
-                            .addComponent(jLabelLixoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelMesaLayout.createSequentialGroup()
-                            .addGap(101, 101, 101)
-                            .addComponent(jLabelBaralhoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelMesaLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(26, 26, 26)
                         .addComponent(jLabelAdversarioCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
-                        .addComponent(jLabelJogadorCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelJogadorCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
+                    .addGroup(jPanelMesaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
+                                .addComponent(jLabelBaralhoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
+                                .addComponent(jLabelLixoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(82, 82, 82)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelJogadorAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+                .addComponent(jPanelJogadorAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jMenu1.setText("Menu");
@@ -246,10 +249,10 @@ public class JMesa extends javax.swing.JFrame {
         
         Jogador jogadorAtual = this.getJogadorAtualNaMesa(mesa);
         
-        //this.atualizaCartasJogadorAtual(jogadorAtual);
+        this.atualizaCartasJogadorAtual(jogadorAtual);
         this.atualizaCartasAdversarios(jogadorAtual);
-        this.atualizaBaralho(mesa);
         this.atualizaCartaLixo(mesa);
+        this.atualizaBaralho(mesa);
         iniciarRodada(mesa);
     }
     
@@ -284,7 +287,7 @@ public class JMesa extends javax.swing.JFrame {
             jlabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             //jlabel.addMouseListener(new Click(joga.getCartas().get(i)));
             jPanelJogadorAtual.add(jlabel);
-        }     
+        }
     }
     
     private void atualizaCartasAdversarios(Jogador jogadorAtual) {
@@ -292,7 +295,7 @@ public class JMesa extends javax.swing.JFrame {
     }
 
     private void atualizaBaralho(Mesa mesa) {
-        if (mesa.verificarBaralho(mesa.getBaralho())) {
+        if (mesa.verificarBaralho()) {
             ImageIcon image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.jpg"));
             //ARRUMAR
             image.setImage(image.getImage().getScaledInstance(70, 100, 150));
@@ -303,9 +306,9 @@ public class JMesa extends javax.swing.JFrame {
         }
     }
     
-    private void clicouBaralho(Baralho baralho, Jogador joga){
-        if (atorJogador.efetuarCompra(baralho)) {
-            this.atualizaCartasJogadorAtual(joga);
+    private void clicouBaralho(Jogador jogando){
+        if (atorJogador.efetuarCompra()) {
+            this.atualizaCartasJogadorAtual(jogando);
         }
     }
     
