@@ -110,10 +110,29 @@ public class AtorJogador {
     }
 
     public void receberJogada(Jogada jogada) {
+        Lance lance = null;
+        Baralho baralho = null;
+        
         if (jogada instanceof Mesa) {
             this.mesa = (Mesa) jogada;
             this.setJogadorAtualIniciarPartida(mesa);
             interfaceMesa.recebeMesa(mesa);
+        } else if (jogada instanceof Lance){
+            lance = (Lance) jogada;
+            if (this.getMesa().getJogador1().getNome().equals(lance.getJogador().getNome())){
+                mesa.setJogadorDaVez(this.getMesa().getJogador2());
+                } else {
+                    mesa.setJogadorDaVez(this.getMesa().getJogador1());
+                }
+            //fica p se eu for colocar algum texto dizendo de quem é a vez
+            //interfaceMesa.atualizaJogadorDaVez(mesa);
+            mesa.removeCartaDeJogador(lance);
+            interfaceMesa.recebeLance(lance);
+            //mesa.addLance(lance);
+            //this.verificaFimRodada();
+        } else {
+            baralho = (Baralho) jogada;
+            mesa.setBaralho(baralho);
         }
     }
     
@@ -127,12 +146,14 @@ public class AtorJogador {
         }        
     }
     
-    public boolean efetuarCompra() {
+    public boolean efetuarCompra(Baralho baralho) {
         boolean retorno = false;
         
         if (tratarExecucaoJogada()) {
             if (mesa.comprarCarta(jogadorAtual)) {
                 retorno = true;
+                rede.enviarJogada(baralho);
+                this.receberJogada(baralho);
             } else {
                 interfaceMesa.exibeMensagem("Você já atingiu o limite de cartas ou o baralho está vazio!");
             }
@@ -140,6 +161,22 @@ public class AtorJogador {
             interfaceMesa.exibeMensagem("Ainda não é sua vez!");
         }
         
+        return retorno;
+    }
+    
+    public boolean efetuarJogada(Carta carta) {
+        boolean retorno = false;
+
+        if (tratarExecucaoJogada()) {
+            Lance lance = new Lance();
+            lance.setCarta(carta);
+            lance.setJogador(this.getJogadorAtual());
+            retorno = true;
+            rede.enviarJogada(lance);
+
+            this.receberJogada(lance);
+        }
+
         return retorno;
     }
     
@@ -161,5 +198,23 @@ public class AtorJogador {
 
     public boolean ehJogadorDaVez(Jogador jogador) {
         return (jogador.getNome().equals(mesa.getJogadorDaVez().getNome()));
+    }
+
+    public boolean identificaCartasJogador(Carta carta) {
+        
+        for (Carta cartaMao : jogadorAtual.getCartas()) {
+            if (cartaMao.getNome().equals("Cap. Oliveira")) {
+                for (Carta cartaMao2 : jogadorAtual.getCartas()) {
+                    if (cartaMao2.getNome().equals("Cap. Nascimento") ||
+                            cartaMao2.getNome().equals("Matias")) {
+                        if (!carta.getNome().equals("Cap. Oliveira")) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return true;
     }
 }

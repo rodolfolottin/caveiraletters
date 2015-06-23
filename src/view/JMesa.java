@@ -17,6 +17,7 @@ import model.AtorJogador;
 import model.Baralho;
 import model.Carta;
 import model.Jogador;
+import model.Lance;
 import model.Mesa;
 
 /**
@@ -69,13 +70,12 @@ public class JMesa extends javax.swing.JFrame {
 
         jLabelBaralhoCompartilhado.addMouseListener(new MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                clicouBaralho(getJogadorAtualNaMesa(atorJogador.getMesa()));
+                clicouBaralho(atorJogador.getMesa().getBaralho(), getJogadorAtualNaMesa(atorJogador.getMesa()));
             }
         });
 
         jPanelJogadorAdversario.setBackground(new java.awt.Color(143, 0, 144));
-        jPanelJogadorAdversario.setMaximumSize(new java.awt.Dimension(32767, 32767));
-        jPanelJogadorAdversario.setLayout(new java.awt.GridLayout());
+        jPanelJogadorAdversario.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanelJogadorAtual.setBackground(new java.awt.Color(143, 0, 144));
         jPanelJogadorAtual.setLayout(new java.awt.GridLayout(1, 3, 5, 5));
@@ -260,6 +260,7 @@ public class JMesa extends javax.swing.JFrame {
         this.limparPanelsCartas();
     }
     
+    //checar porque nao esta removendo os labels ao termino da partida
     private void limparPanelsCartas() {
         jPanelJogadorAtual.removeAll();
         jPanelJogadorAdversario.removeAll();
@@ -279,14 +280,19 @@ public class JMesa extends javax.swing.JFrame {
             return jogador2;
         }
     }
+//fica para se eu for colocar de quem é a vez    
+//    public void atualizaJogadorDaVez(Mesa mesa) {
+//        jLabelJogadorVez.setText(mesa.getJogadorDaVez().getNome());
+//    }
     
     private void atualizaCartasJogadorAtual(Jogador joga) {
-        System.out.println("entrou para atualizar");
+        jPanelJogadorAtual.removeAll();
         for (int i = 0; i < joga.getCartas().size(); i++) {
             JLabel jlabel = new JLabel(joga.getCartas().get(i).getImage());
             jlabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            //jlabel.addMouseListener(new Click(joga.getCartas().get(i)));
+            jlabel.addMouseListener(new ClickCarta(joga.getCartas().get(i)));
             jPanelJogadorAtual.add(jlabel);
+            jPanelJogadorAtual.validate();
         }
     }
     
@@ -298,17 +304,19 @@ public class JMesa extends javax.swing.JFrame {
         if (mesa.verificarBaralho()) {
             ImageIcon image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.jpg"));
             //ARRUMAR
-            image.setImage(image.getImage().getScaledInstance(70, 100, 150));
+            image.setImage(image.getImage().getScaledInstance(90, 130, 150));
             //adicionar componente?
             jLabelBaralhoCompartilhado.setIcon(image);
         } else {
             jLabelBaralhoCompartilhado.removeAll();
+            jLabelAdversarioCompartilhado.validate();
         }
     }
     
-    private void clicouBaralho(Jogador jogando){
-        if (atorJogador.efetuarCompra()) {
+    private void clicouBaralho(Baralho baralho, Jogador jogando){
+        if (atorJogador.efetuarCompra(baralho)) {
             this.atualizaCartasJogadorAtual(jogando);
+            //this.atualizaCartasAdversarios(jogando);
         }
     }
     
@@ -317,7 +325,7 @@ public class JMesa extends javax.swing.JFrame {
         Carta cartaLixo = mesa.getCartaLixo();
         ImageIcon image = cartaLixo.getImage();
         //ARRUMAR
-        image.setImage(image.getImage().getScaledInstance(70, 100, 150));
+        image.setImage(image.getImage().getScaledInstance(90, 130, 150));
         jLabelLixoCompartilhado.setIcon(image);
     }
     
@@ -328,13 +336,32 @@ public class JMesa extends javax.swing.JFrame {
             image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.jpg"));
             //posso deixar essa mudança de tamanho?
             //vou deixar por enquanto, depois redimensiono as imagens
-            image.setImage(image.getImage().getScaledInstance(70, 100, 150));
+            image.setImage(image.getImage().getScaledInstance(90, 130, 150));
         } else {
             image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.jpg"));
-            image.setImage(image.getImage().getScaledInstance(70, 100, 150));
+            image.setImage(image.getImage().getScaledInstance(90, 130, 150));
         }
         JLabel label = new JLabel(image);
         pn.add(label);
+        pn.validate();
+    }
+    
+    public void recebeLance(Lance lance) {
+
+        Jogador jogadorAtual = atorJogador.getJogadorAtual();
+        if (lance.getJogador().getNome().equals(jogadorAtual.getNome())) {
+            this.jLabelJogadorCompartilhado.setIcon(lance.getCarta().getImage());
+        } else {
+            this.jLabelAdversarioCompartilhado.setIcon(lance.getCarta().getImage());
+            this.removeLabel(jPanelJogadorAdversario);
+        } 
+
+        this.validate();
+    }
+    
+    private void removeLabel(JPanel panel) {
+        panel.remove(0);
+        panel.validate();
     }
     
     private void jMenuItemIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIniciarPartidaActionPerformed
@@ -344,7 +371,33 @@ public class JMesa extends javax.swing.JFrame {
     private void jMenuItemDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDesconectarActionPerformed
         atorJogador.desconectar();
     }//GEN-LAST:event_jMenuItemDesconectarActionPerformed
-      
+    
+    public void atualizarPanelJogador(Component comp) {
+        jPanelJogadorAtual.remove(comp);
+        jPanelJogadorAtual.validate();
+    }
+    
+    public void clicouCarta(Carta carta, Component comp) {
+        if (atorJogador.identificaCartasJogador(carta) && atorJogador.efetuarJogada(carta)) {
+            this.atualizarPanelJogador(comp);
+        }
+    }
+    
+    public class ClickCarta extends MouseAdapter {
+
+        private Carta carta;
+
+        public ClickCarta(Carta carta) {
+            this.carta = carta;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent me) {
+
+            clicouCarta(carta, me.getComponent());
+        }
+    };
+    
     /**
      * @param args the command line arguments
      */

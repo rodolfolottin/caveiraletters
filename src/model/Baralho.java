@@ -21,7 +21,7 @@ public class Baralho implements Jogada {
     protected List <Carta> cartas;
     
     public Baralho() {
-        this.cartas = populaBaralho();
+        cartas = populaBaralho();
     }
     
     public List singleCards() {
@@ -72,6 +72,6 @@ public class Baralho implements Jogada {
     }
 
     public List<Carta> getCartas() {
-        return this.cartas;
+        return cartas;
     }    
 }
