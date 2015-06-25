@@ -70,7 +70,7 @@ public class JMesa extends javax.swing.JFrame {
 
         jLabelBaralhoCompartilhado.addMouseListener(new MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                clicouBaralho(atorJogador.getMesa().getBaralho(), getJogadorAtualNaMesa(atorJogador.getMesa()));
+                clicouBaralho(atorJogador.getMesa().getBaralho(), atorJogador.getJogadorAtual());
             }
         });
 
@@ -232,6 +232,7 @@ public class JMesa extends javax.swing.JFrame {
         } else if (mesa.getStatus().equals(Mesa.StatusMesa.INICIAR_RODADA)) {
             this.iniciarRodada(mesa);
         } 
+        //this.atualizaJogadorDaVez(mesa);
         this.validate();
     }
     
@@ -280,10 +281,6 @@ public class JMesa extends javax.swing.JFrame {
             return jogador2;
         }
     }
-//fica para se eu for colocar de quem é a vez    
-//    public void atualizaJogadorDaVez(Mesa mesa) {
-//        jLabelJogadorVez.setText(mesa.getJogadorDaVez().getNome());
-//    }
     
     private void atualizaCartasJogadorAtual(Jogador joga) {
         jPanelJogadorAtual.removeAll();
@@ -309,14 +306,13 @@ public class JMesa extends javax.swing.JFrame {
             jLabelBaralhoCompartilhado.setIcon(image);
         } else {
             jLabelBaralhoCompartilhado.removeAll();
-            jLabelAdversarioCompartilhado.validate();
+            jLabelBaralhoCompartilhado.validate();
         }
     }
     
     private void clicouBaralho(Baralho baralho, Jogador jogando){
-        if (atorJogador.efetuarCompra(baralho)) {
+        if (atorJogador.efetuarCompra(jogando)) {
             this.atualizaCartasJogadorAtual(jogando);
-            //this.atualizaCartasAdversarios(jogando);
         }
     }
     
@@ -347,7 +343,7 @@ public class JMesa extends javax.swing.JFrame {
     }
     
     public void recebeLance(Lance lance) {
-
+        
         Jogador jogadorAtual = atorJogador.getJogadorAtual();
         if (lance.getJogador().getNome().equals(jogadorAtual.getNome())) {
             this.jLabelJogadorCompartilhado.setIcon(lance.getCarta().getImage());
@@ -364,6 +360,10 @@ public class JMesa extends javax.swing.JFrame {
         panel.validate();
     }
     
+    public String exibeDialogoAdivinho() {
+        return JOptionPane.showInputDialog(this, "Digite seu chute: ", "");
+    }
+    
     private void jMenuItemIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIniciarPartidaActionPerformed
         atorJogador.iniciarPartida();
     }//GEN-LAST:event_jMenuItemIniciarPartidaActionPerformed
@@ -378,7 +378,7 @@ public class JMesa extends javax.swing.JFrame {
     }
     
     public void clicouCarta(Carta carta, Component comp) {
-        if (atorJogador.identificaCartasJogador(carta) && atorJogador.efetuarJogada(carta)) {
+        if (atorJogador.efetuarJogada(carta)) {
             this.atualizarPanelJogador(comp);
         }
     }

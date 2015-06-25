@@ -108,10 +108,20 @@ public class AtorJogador {
         this.enviarJogada(mesa);
         this.receberJogada(mesa);
     }
+      
+    protected void setJogadorAtualIniciarPartida(Mesa mesa) {
+        if (mesa.getStatus().equals(Mesa.StatusMesa.INICAR_PARTIDA)) {
+            for (Jogador jog : mesa.getJogadores()) {
+                if (jog.getNome().equals(jogadorAtual.getNome())) {
+                    jogadorAtual = jog;
+                }
+            }
+        }        
+    }
 
     public void receberJogada(Jogada jogada) {
+        Carta carta = null;
         Lance lance = null;
-        Baralho baralho = null;
         
         if (jogada instanceof Mesa) {
             this.mesa = (Mesa) jogada;
@@ -124,38 +134,30 @@ public class AtorJogador {
                 } else {
                     mesa.setJogadorDaVez(this.getMesa().getJogador1());
                 }
-            //fica p se eu for colocar algum texto dizendo de quem é a vez
-            //interfaceMesa.atualizaJogadorDaVez(mesa);
             mesa.removeCartaDeJogador(lance);
             interfaceMesa.recebeLance(lance);
             //mesa.addLance(lance);
             //this.verificaFimRodada();
         } else {
-            baralho = (Baralho) jogada;
-            mesa.setBaralho(baralho);
+            Jogador jogando = getMesa().getJogadorDaVez();
+            carta = (Carta) jogada;
+            mesa.removeCartaBaralho(carta);
+            mesa.adicionaCartaJogador(carta, jogando);
         }
     }
     
-    protected void setJogadorAtualIniciarPartida(Mesa mesa) {
-        if (mesa.getStatus().equals(Mesa.StatusMesa.INICAR_PARTIDA)) {
-            for (Jogador jog : mesa.getJogadores()) {
-                if (jog.getNome().equals(jogadorAtual.getNome())) {
-                    jogadorAtual = jog;
-                }
-            }
-        }        
-    }
-    
-    public boolean efetuarCompra(Baralho baralho) {
+    public boolean efetuarCompra(Jogador jogador) {
         boolean retorno = false;
         
         if (tratarExecucaoJogada()) {
-            if (mesa.comprarCarta(jogadorAtual)) {
+            if (mesa.verificaMaoJogadorParaComprar(jogadorAtual) && mesa.verificarBaralho()) {
+                Carta carta = getMesa().getBaralho().getCartaAleatoria();
                 retorno = true;
-                rede.enviarJogada(baralho);
-                this.receberJogada(baralho);
+                rede.enviarJogada(carta);
+                
+                this.receberJogada(carta);
             } else {
-                interfaceMesa.exibeMensagem("Você já atingiu o limite de cartas ou o baralho está vazio!");
+                interfaceMesa.exibeMensagem("Você já atingiu o limite de cartas!");
             }
         } else {
             interfaceMesa.exibeMensagem("Ainda não é sua vez!");
@@ -166,15 +168,19 @@ public class AtorJogador {
     
     public boolean efetuarJogada(Carta carta) {
         boolean retorno = false;
-
+        Jogador jogador = this.getJogadorAtual();
+        
         if (tratarExecucaoJogada()) {
-            Lance lance = new Lance();
-            lance.setCarta(carta);
-            lance.setJogador(this.getJogadorAtual());
-            retorno = true;
-            rede.enviarJogada(lance);
+            if (mesa.verificaMaoJogadorParaJogada(jogador) && mesa.identificaCartasJogador(jogador, carta)) {
+                this.verificaAcaoCarta(carta, jogador);
+                Lance lance = new Lance();
+                lance.setCarta(carta);
+                lance.setJogador(jogador);
+                retorno = true;
+                rede.enviarJogada(lance);
 
-            this.receberJogada(lance);
+                this.receberJogada(lance);
+            }
         }
 
         return retorno;
@@ -199,22 +205,48 @@ public class AtorJogador {
     public boolean ehJogadorDaVez(Jogador jogador) {
         return (jogador.getNome().equals(mesa.getJogadorDaVez().getNome()));
     }
-
-    public boolean identificaCartasJogador(Carta carta) {
-        
-        for (Carta cartaMao : jogadorAtual.getCartas()) {
-            if (cartaMao.getNome().equals("Cap. Oliveira")) {
-                for (Carta cartaMao2 : jogadorAtual.getCartas()) {
-                    if (cartaMao2.getNome().equals("Cap. Nascimento") ||
-                            cartaMao2.getNome().equals("Matias")) {
-                        if (!carta.getNome().equals("Cap. Oliveira")) {
-                            return false;
-                        }
-                    }
-                }
-            }
+    
+    private Jogador obtemJogadorAdversario(Jogador jogador) {
+        if (jogador.getNome().equals(mesa.getJogador1().getNome())) {
+            return mesa.getJogador2();
+        } else {
+            return mesa.getJogador1();
         }
+    }
+    
+    public void verificaAcaoCarta(Carta carta, Jogador jogador) {
+        String nome = null;
+        Jogador jogadorAdversario = this.obtemJogadorAdversario(jogador);
         
-        return true;
+        if (carta.getNome().equals("Baiano")) {
+            nome = interfaceMesa.exibeDialogoAdivinho();
+            if (mesa.verificaChute(nome, jogadorAdversario)) {
+                interfaceMesa.exibeMensagem("Você acertou");
+                //muda estado partida
+            } else {
+                interfaceMesa.exibeMensagem("Você errou");
+                //muda estado partida
+            }
+        } if (carta.getNome().equals("Sgt. Rocha")) {
+            Carta cartaAdversario = mesa.identificaCartaAdversario(jogadorAdversario);
+            interfaceMesa.exibeMensagem("A carta do adversário é: " + cartaAdversario.getNome());
+        } if (carta.getNome().equals("Neto")) {
+            Jogador vencedor = mesa.identificaVencedor(jogador, jogadorAdversario);
+            if (!vencedor.getNome().equals("Empate")) {
+                interfaceMesa.exibeMensagem("O jogador com a carta de maior valor é: " + vencedor.getNome() + ", pois sua carta é: " + vencedor.getCartas().get(0).getNome());
+                //muda estado partida
+            } else {
+                interfaceMesa.exibeMensagem("Não há vencedor: " + vencedor.getNome());
+            }
+//        } if (carta.getNome().equals("Cap. Fabio")) {
+//          //muda estado jogador
+//        } if (carta.getNome().equals("Matias")) {
+//            
+//        } if (carta.getNome().equals("Cap. Nascimento")) {
+                 
+        } if (carta.getNome().equals("Papa")) {
+            interfaceMesa.exibeMensagem("O jogador vencedor é: " + jogadorAdversario.getNome());
+            //muda estado partida
+        }
     }
 }

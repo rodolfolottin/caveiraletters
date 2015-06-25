@@ -36,8 +36,6 @@ public class Mesa implements Jogada {
         INICAR_PARTIDA, INICIAR_RODADA;
     }  
     
-    /*getters e setters*/
-    
     public StatusMesa getStatus() {
         return status;
     }
@@ -162,6 +160,7 @@ public class Mesa implements Jogada {
         this.baralho.embaralharCartas();
     }
     
+    /*NAO UTILIZADOO*/
     public boolean comprarCarta(Jogador jogador) {
         boolean retorno = false;
         List<Carta> cartasJogador = jogador.getCartas();
@@ -170,7 +169,7 @@ public class Mesa implements Jogada {
             
             Carta carta = baralho.getCartaAleatoria();
             baralho.getCartas().remove(carta);
-                        
+             
             cartasJogador.add(carta);
             jogador.setCartas(cartasJogador);
             
@@ -187,22 +186,93 @@ public class Mesa implements Jogada {
     public void removeCartaDeJogador(Lance lance) {
         if (lance.getJogador().getNome().equals(this.getJogador1().getNome())) {
             this.removeCartaJogador(jogador1, lance);
-
         } else {
             this.removeCartaJogador(jogador2, lance);
         }
     }
     
     public void removeCartaJogador(Jogador jogador, Lance lance) {
-          for (int i = 0; i < jogador.getCartas().size(); i++) {
-                Carta atual = jogador.getCartas().get(i);
-                if (atual.getNome().equals(lance.getCarta().getNome())) {
-                    jogador.getCartas().remove(i).getNome();
-                }
+        for (int i = 0; i < jogador.getCartas().size(); i++) {
+            Carta atual = jogador.getCartas().get(i);
+            if (atual.getNome().equals(lance.getCarta().getNome())) {
+                List<Carta> temporaria = jogador.getCartas();
+                temporaria.remove(i);
+                jogador.setCartas(temporaria);
             }
+        }
     }
     
-    public boolean identificarCarta(Carta carta) {
-            return true;
+    public void removeCartaBaralho(Carta carta) {
+        List<Carta> baralhoTemp = getBaralho().getCartas();
+        
+        boolean achou = false;
+        int i = 0;
+        while (achou == false) {
+            if (carta.getNome().equals(baralhoTemp.get(i).getNome())) {
+                baralhoTemp.remove(i);
+                achou = true;
+            }
+            i++;
+        }
+    }
+    
+    public void adicionaCartaJogador(Carta carta, Jogador jogador) {
+        if (jogador.getNome().equals(getJogador1().getNome())) {
+            getJogador1().getCartas().add(carta);
+        } else {
+            getJogador2().getCartas().add(carta);
+        }
+    }
+
+    public boolean acabouPartida() {
+        return baralho.getCartas().isEmpty();
+    }
+    
+    public boolean verificaMaoJogadorParaComprar(Jogador jogador) {
+        if (jogador.getNome().equals(getJogador1().getNome())) {
+            return getJogador1().getCartas().size() < 2;
+        } else {
+            return getJogador2().getCartas().size() < 2;
+        } 
+    }
+    
+    public boolean verificaMaoJogadorParaJogada(Jogador jogador) {
+        return jogador.getCartas().size() == 2;
+    }
+    
+    public boolean verificaChute(String nome, Jogador jogador) {
+        return nome.equalsIgnoreCase(jogador.getCartas().get(0).getNome());
+    }
+    
+    public Carta identificaCartaAdversario(Jogador jogador) {
+        return jogador.getCartas().get(0);
+    }
+    
+    public Jogador identificaVencedor(Jogador jogador, Jogador jogadorAdversario) {
+        System.out.println("Meu jogador adversário: " + jogadorAdversario.getNome());
+        if (jogador.getCartas().get(0).getValor() > jogadorAdversario.getCartas().get(0).getValor()) {
+            return jogador;
+        } if (jogador.getCartas().get(0).getValor() == jogadorAdversario.getCartas().get(0).getValor()) {
+            return new Jogador("Empate");
+        } else {
+            return jogador;
+        }
+    }
+    
+    public boolean identificaCartasJogador(Jogador jogador, Carta carta) {
+
+        for (Carta cartaMao : jogador.getCartas()) {
+            if (cartaMao.getNome().equals("Cap. Oliveira")) {
+                for (Carta cartaMao2 : jogador.getCartas()) {
+                    if (cartaMao2.getNome().equals("Cap. Nascimento") ||
+                            cartaMao2.getNome().equals("Matias")) {
+                        if (!carta.getNome().equals("Cap. Oliveira")) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
