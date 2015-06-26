@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import model.AtorJogador;
 import model.Baralho;
 import model.Carta;
@@ -63,7 +64,7 @@ public class JMesa extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(143, 0, 144));
 
-        jPanelMesa.setBackground(new java.awt.Color(143, 0, 144));
+        jPanelMesa.setBackground(new java.awt.Color(82, 10, 83));
         jPanelMesa.setForeground(new java.awt.Color(251, 239, 253));
         jPanelMesa.setToolTipText("");
         jPanelMesa.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -74,10 +75,10 @@ public class JMesa extends javax.swing.JFrame {
             }
         });
 
-        jPanelJogadorAdversario.setBackground(new java.awt.Color(143, 0, 144));
+        jPanelJogadorAdversario.setBackground(new java.awt.Color(82, 10, 83));
         jPanelJogadorAdversario.setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanelJogadorAtual.setBackground(new java.awt.Color(143, 0, 144));
+        jPanelJogadorAtual.setBackground(new java.awt.Color(82, 10, 83));
         jPanelJogadorAtual.setLayout(new java.awt.GridLayout(1, 3, 5, 5));
 
         javax.swing.GroupLayout jPanelMesaLayout = new javax.swing.GroupLayout(jPanelMesa);
@@ -85,47 +86,46 @@ public class JMesa extends javax.swing.JFrame {
         jPanelMesaLayout.setHorizontalGroup(
             jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMesaLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMesaLayout.createSequentialGroup()
-                        .addComponent(jLabelBaralhoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                        .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelAdversarioCompartilhado, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                            .addComponent(jLabelJogadorCompartilhado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(233, 233, 233)
-                        .addComponent(jLabelLixoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
-                        .addComponent(jPanelJogadorAdversario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelJogadorAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(41, 41, 41)
+                .addComponent(jLabelBaralhoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(jLabelJogadorCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelAdversarioCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(jLabelLixoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelMesaLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelJogadorAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelJogadorAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanelMesaLayout.setVerticalGroup(
             jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMesaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelJogadorAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelJogadorAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMesaLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabelAdversarioCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabelJogadorCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabelAdversarioCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelMesaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelMesaLayout.createSequentialGroup()
+                                .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelMesaLayout.createSequentialGroup()
+                                        .addGap(59, 59, 59)
+                                        .addComponent(jLabelBaralhoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelMesaLayout.createSequentialGroup()
+                                        .addGap(67, 67, 67)
+                                        .addComponent(jLabelLixoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 53, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
-                                .addComponent(jLabelBaralhoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMesaLayout.createSequentialGroup()
-                                .addComponent(jLabelLixoCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(82, 82, 82)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelJogadorCompartilhado, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)))
                 .addComponent(jPanelJogadorAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -164,13 +164,11 @@ public class JMesa extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+            .addComponent(jPanelMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 981, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanelMesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -231,8 +229,11 @@ public class JMesa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Uma nova partida vai iniciar");
         } else if (mesa.getStatus().equals(Mesa.StatusMesa.INICIAR_RODADA)) {
             this.iniciarRodada(mesa);
-        } 
-        //this.atualizaJogadorDaVez(mesa);
+        } else {
+            this.exibeMensagem("O jogador vencedor foi: " + mesa.getJogadorVencedor().getNome());
+            this.limpaTodosCampos();   
+            System.exit(0);
+        }
         this.validate();
     }
     
@@ -298,16 +299,9 @@ public class JMesa extends javax.swing.JFrame {
     }
 
     private void atualizaBaralho(Mesa mesa) {
-        if (mesa.verificarBaralho()) {
-            ImageIcon image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.jpg"));
-            //ARRUMAR
-            image.setImage(image.getImage().getScaledInstance(90, 130, 150));
-            //adicionar componente?
-            jLabelBaralhoCompartilhado.setIcon(image);
-        } else {
-            jLabelBaralhoCompartilhado.removeAll();
-            jLabelBaralhoCompartilhado.validate();
-        }
+        ImageIcon image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.png"));
+        image.setImage(image.getImage().getScaledInstance(110, 160, 150));
+        jLabelBaralhoCompartilhado.setIcon(image);
     }
     
     private void clicouBaralho(Baralho baralho, Jogador jogando){
@@ -318,10 +312,8 @@ public class JMesa extends javax.swing.JFrame {
     
     private void atualizaCartaLixo(Mesa mesa) {
         mesa.criarCartaLixo();
-        Carta cartaLixo = mesa.getCartaLixo();
-        ImageIcon image = cartaLixo.getImage();
-        //ARRUMAR
-        image.setImage(image.getImage().getScaledInstance(90, 130, 150));
+        ImageIcon image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.png"));
+        image.setImage(image.getImage().getScaledInstance(90, 140, 150));
         jLabelLixoCompartilhado.setIcon(image);
     }
     
@@ -329,14 +321,11 @@ public class JMesa extends javax.swing.JFrame {
         ImageIcon image = null;
 
         if (adversario) {
-            image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.jpg"));
-            //posso deixar essa mudança de tamanho?
-            //vou deixar por enquanto, depois redimensiono as imagens
-            image.setImage(image.getImage().getScaledInstance(90, 130, 150));
+            image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.png"));
         } else {
-            image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.jpg"));
-            image.setImage(image.getImage().getScaledInstance(90, 130, 150));
+            image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.png"));
         }
+        image.setImage(image.getImage().getScaledInstance(100, 150, 150));
         JLabel label = new JLabel(image);
         pn.add(label);
         pn.validate();

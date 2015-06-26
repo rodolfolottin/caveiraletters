@@ -25,6 +25,7 @@ public class Mesa implements Jogada {
     private List<Rodada> rodadas;
     private Rodada rodadaAtual;
     private Carta lixo;
+    private boolean acabouPartida;
 
     public Mesa() {
         baralho = new Baralho();
@@ -33,7 +34,7 @@ public class Mesa implements Jogada {
     }
 
     public enum StatusMesa {
-        INICAR_PARTIDA, INICIAR_RODADA;
+        INICAR_PARTIDA, INICIAR_RODADA, ENCERRAR_PARTIDA;
     }  
     
     public StatusMesa getStatus() {
@@ -116,6 +117,14 @@ public class Mesa implements Jogada {
         this.lixo = lixo;
     }
     
+    public boolean acabouPartida() {
+        return acabouPartida;
+    }
+
+    public void setAcabouPartida(boolean acabouPartida) {
+        this.acabouPartida = acabouPartida;
+    }
+
     /*getters e setters*/
     
     public void criaJogadores () {
@@ -160,27 +169,15 @@ public class Mesa implements Jogada {
         this.baralho.embaralharCartas();
     }
     
-    /*NAO UTILIZADOO*/
-    public boolean comprarCarta(Jogador jogador) {
+    public boolean verificarBaralho() {
         boolean retorno = false;
-        List<Carta> cartasJogador = jogador.getCartas();
-
-        if (!baralho.getCartas().isEmpty() && cartasJogador.size() < 2) {
-            
-            Carta carta = baralho.getCartaAleatoria();
-            baralho.getCartas().remove(carta);
-             
-            cartasJogador.add(carta);
-            jogador.setCartas(cartasJogador);
-            
+        
+        if (baralho.getCartas().isEmpty()) {
+            this.setAcabouPartida(true);
             retorno = true;
         }
         
-        return retorno;
-    }
-    
-    public boolean verificarBaralho() {
-        return !baralho.getCartas().isEmpty();
+        return true;
     }
     
     public void removeCartaDeJogador(Lance lance) {
@@ -200,6 +197,12 @@ public class Mesa implements Jogada {
                 jogador.setCartas(temporaria);
             }
         }
+    }
+    
+    public void removeCartaJogadorAdversario(Jogador jogador) {
+        List<Carta> temp = jogador.getCartas();
+        temp.remove(0);
+        jogador.setCartas(temp);
     }
     
     public void removeCartaBaralho(Carta carta) {
@@ -223,10 +226,6 @@ public class Mesa implements Jogada {
             getJogador2().getCartas().add(carta);
         }
     }
-
-    public boolean acabouPartida() {
-        return baralho.getCartas().isEmpty();
-    }
     
     public boolean verificaMaoJogadorParaComprar(Jogador jogador) {
         if (jogador.getNome().equals(getJogador1().getNome())) {
@@ -237,6 +236,9 @@ public class Mesa implements Jogada {
     }
     
     public boolean verificaMaoJogadorParaJogada(Jogador jogador) {
+        if (this.getStatus().equals((StatusMesa.ENCERRAR_PARTIDA))) {
+            return true;
+        }
         return jogador.getCartas().size() == 2;
     }
     
@@ -249,13 +251,23 @@ public class Mesa implements Jogada {
     }
     
     public Jogador identificaVencedor(Jogador jogador, Jogador jogadorAdversario) {
-        System.out.println("Meu jogador adversário: " + jogadorAdversario.getNome());
-        if (jogador.getCartas().get(0).getValor() > jogadorAdversario.getCartas().get(0).getValor()) {
-            return jogador;
-        } if (jogador.getCartas().get(0).getValor() == jogadorAdversario.getCartas().get(0).getValor()) {
-            return new Jogador("Empate");
+        
+        if (jogador.getCartas().get(0).getNome().equals("Neto")) {
+            if (jogador.getCartas().get(1).getValor() > jogadorAdversario.getCartas().get(0).getValor()) {
+                return jogador;
+            } if (jogador.getCartas().get(1).getValor() == jogadorAdversario.getCartas().get(0).getValor()) {
+                return new Jogador("Empate");
+            } else {
+                return jogadorAdversario;
+            }
         } else {
-            return jogador;
+            if (jogador.getCartas().get(0).getValor() > jogadorAdversario.getCartas().get(0).getValor()) {
+                return jogador;
+            } if (jogador.getCartas().get(0).getValor() == jogadorAdversario.getCartas().get(0).getValor()) {
+                return new Jogador("Empate");
+            } else {
+                return jogadorAdversario;
+            }
         }
     }
     
@@ -274,5 +286,10 @@ public class Mesa implements Jogada {
             }
         }
         return true;
+    }
+    
+    public void setEstadoJogo(boolean acabouPartida, Jogador jogadorVencedor) {
+        this.setAcabouPartida(true);
+        this.setJogadorVencedor(jogadorVencedor);
     }
 }
