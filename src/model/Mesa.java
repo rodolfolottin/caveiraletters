@@ -172,12 +172,16 @@ public class Mesa implements Jogada {
     public boolean verificarBaralho() {
         boolean retorno = false;
         
-        if (baralho.getCartas().isEmpty()) {
+        if (isBaralhoVazio()) {
             this.setAcabouPartida(true);
             retorno = true;
         }
         
-        return true;
+        return false;
+    }
+    
+    public boolean isBaralhoVazio() {
+        return baralho.getCartas().isEmpty();
     }
     
     public void removeCartaDeJogador(Lance lance) {
@@ -198,7 +202,8 @@ public class Mesa implements Jogada {
             }
         }
     }
-    
+   
+    //not used until now
     public void removeCartaJogadorAdversario(Jogador jogador) {
         List<Carta> temp = jogador.getCartas();
         temp.remove(0);
