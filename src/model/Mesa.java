@@ -202,13 +202,6 @@ public class Mesa implements Jogada {
             }
         }
     }
-   
-    //not used until now
-    public void removeCartaJogadorAdversario(Jogador jogador) {
-        List<Carta> temp = jogador.getCartas();
-        temp.remove(0);
-        jogador.setCartas(temp);
-    }
     
     public void removeCartaBaralho(Carta carta) {
         List<Carta> baralhoTemp = getBaralho().getCartas();
@@ -256,7 +249,6 @@ public class Mesa implements Jogada {
     }
     
     public Jogador identificaVencedor(Jogador jogador, Jogador jogadorAdversario) {
-        
         if (jogador.getCartas().get(0).getNome().equals("Neto")) {
             if (jogador.getCartas().get(1).getValor() > jogadorAdversario.getCartas().get(0).getValor()) {
                 return jogador;

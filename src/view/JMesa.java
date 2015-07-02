@@ -229,7 +229,7 @@ public class JMesa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Uma nova partida vai iniciar");
         } else if (mesa.getStatus().equals(Mesa.StatusMesa.INICIAR_RODADA)) {
             this.iniciarRodada(mesa);
-        } else {
+        } else if (mesa.getStatus().equals(Mesa.StatusMesa.ENCERRAR_PARTIDA)) {
             this.exibeMensagem("O jogador vencedor foi: " + mesa.getJogadorVencedor().getNome());
             this.limpaTodosCampos();   
             System.exit(0);
@@ -242,7 +242,6 @@ public class JMesa extends javax.swing.JFrame {
     }
     
     private void iniciarRodada(Mesa mesa) {
-        //por enquanto
         mesa.iniciarRodada(mesa.getJogadorDaVez());
     }
     
@@ -253,9 +252,9 @@ public class JMesa extends javax.swing.JFrame {
         
         this.atualizaCartasJogadorAtual(jogadorAtual);
         this.atualizaCartasAdversarios(jogadorAtual);
-        this.atualizaCartaLixo(mesa);
         this.atualizaBaralho(mesa);
-        iniciarRodada(mesa);
+        this.atualizaCartaLixo();
+        this.iniciarRodada(mesa);
     }
     
     public void limpaTodosCampos() {
@@ -310,8 +309,7 @@ public class JMesa extends javax.swing.JFrame {
         }
     }
     
-    private void atualizaCartaLixo(Mesa mesa) {
-        mesa.criarCartaLixo();
+    private void atualizaCartaLixo() {
         ImageIcon image = new javax.swing.ImageIcon(getClass().getResource("/images/fundo.png"));
         image.setImage(image.getImage().getScaledInstance(90, 140, 150));
         jLabelLixoCompartilhado.setIcon(image);
