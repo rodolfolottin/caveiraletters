@@ -13,8 +13,7 @@ import javax.swing.ImageIcon;
  * @author rodolfolottin
  */
 public class FactoryCarta implements Jogada {
-    //how to put images
-    //ImageIcon(this.getClass().getResource("/images/filename.png"));
+   
     public Carta makeBaiano() {
         return new Carta(1, "Baiano", 1, new javax.swing.ImageIcon(getClass().getResource("/images/baiano.png")), 5);
     }

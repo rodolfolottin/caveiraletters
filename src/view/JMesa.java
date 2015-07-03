@@ -269,6 +269,10 @@ public class JMesa extends javax.swing.JFrame {
         jLabelLixoCompartilhado.setIcon(null);
         jLabelJogadorCompartilhado.setIcon(null);
         jLabelAdversarioCompartilhado.setIcon(null);
+        //jPanelJogadorAdversario.setEnabled(false);
+        jPanelJogadorAdversario.validate();
+        jPanelJogadorAtual.validate();
+        this.validate();
     }
     
     private Jogador getJogadorAtualNaMesa(Mesa mesa) {

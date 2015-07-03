@@ -139,15 +139,16 @@ public class AtorJogador {
             mesa.adicionaCartaJogador(carta, jogando);
         } else if (jogada instanceof Lance){
             lance = (Lance) jogada;
-            if (this.getMesa().getJogador1().getNome().equals(lance.getJogador().getNome())){
-                mesa.setJogadorDaVez(this.getMesa().getJogador2());
-            } else {
-                mesa.setJogadorDaVez(this.getMesa().getJogador1());
+            if (!lance.getCarta().getNome().equals("Matias")) {
+                if (this.getMesa().getJogador1().getNome().equals(lance.getJogador().getNome())){
+                    mesa.setJogadorDaVez(this.getMesa().getJogador2());
+                } else {
+                    mesa.setJogadorDaVez(this.getMesa().getJogador1());
+                }
             }
+            mesa.addLance(lance);
             mesa.removeCartaDeJogador(lance);
             interfaceMesa.recebeLance(lance);
-            //mesa.addLance(lance);
-            //this.verificaAcaoCarta(lance, jogadorAtual);
             this.verificaFimPartida();
         }
     }
@@ -157,7 +158,7 @@ public class AtorJogador {
         
         if (tratarExecucaoJogada()) {
             if (mesa.verificaMaoJogadorParaComprar(jogadorAtual) && !(mesa.isBaralhoVazio())) {
-                Carta carta = getMesa().getBaralho().getCartaAleatoria();
+                Carta carta = mesa.comprarCarta();
                 retorno = true;
                 rede.enviarJogada(carta);                
                 this.receberJogada(carta);
@@ -180,12 +181,16 @@ public class AtorJogador {
                 Lance lance = new Lance();
                 lance.setCarta(carta);
                 lance.setJogador(jogador);
-                this.verificaAcaoCarta(lance, jogador);
+                this.verificaAcaoCarta(lance);
                 retorno = true;
                 rede.enviarJogada(lance);
 
                 this.receberJogada(lance);
+            } else {
+                this.exibeMensagem("Jogada inválida!");
             }
+        } else {
+            this.exibeMensagem("Ainda não é sua vez!");
         }
 
         return retorno;
@@ -196,11 +201,26 @@ public class AtorJogador {
     }
     
     public boolean tratarAptoParaJogar(Jogador jogador, Carta carta) {
-        return mesa.verificaMaoJogadorParaJogada(jogador) && mesa.identificaCartasJogador(jogador, carta);
+        return (mesa.verificaMaoJogadorParaJogada(jogador) && mesa.identificaCartasJogador(jogador, carta)) || mesa.isBaralhoVazio();
     }
     
     private boolean verificaFimPartida() {
-        if (getMesa().acabouPartida()) {    
+        
+//        System.out.println("Nro cartas jogador1: " + mesa.getJogador1().getCartas());
+//        System.out.println("Nro cartas jogador2: " + mesa.getJogador2().getCartas());
+        
+        if (mesa.isBaralhoVazio() && (mesa.getJogador1().getCartas() == null 
+                        && mesa.getJogador2().getCartas() == null)) {
+//            System.out.println("entrou");
+            mesa.setStatus(Mesa.StatusMesa.ENCERRAR_PARTIDA);
+            
+            mesa.calculaVencedor(mesa.getRodadaAtual());
+            
+            rede.enviarJogada(mesa);
+            this.receberJogada(mesa);
+            
+            return true;
+        } else if (mesa.acabouPartida()) {    
             mesa.setStatus(Mesa.StatusMesa.ENCERRAR_PARTIDA);
             
             rede.enviarJogada(mesa);
@@ -230,12 +250,14 @@ public class AtorJogador {
             return mesa.getJogador1();
         }
     }
-    
-    public void verificaAcaoCarta(Lance lance, Jogador jogador) {
+
+    public void verificaAcaoCarta(Lance lance) {
+        Jogador jogador = lance.getJogador();
         Jogador jogadorAdversario = this.obtemJogadorAdversario(jogador);
         
-        String nomeCarta = lance.getCarta().getNome();
-        if (!(mesa.isBaralhoVazio()) /*|| !jogadorAdversario.isImune()*/) {
+        if (!mesa.isBaralhoVazio() && !(mesa.jogadorAdversarioImune())) {
+            String nomeCarta = lance.getCarta().getNome();
+            
             switch (nomeCarta) {
                 case "Baiano":
                     String chute = interfaceMesa.exibeDialogoAdivinho();
@@ -258,11 +280,6 @@ public class AtorJogador {
                     } else {
                         this.exibeMensagem(vencedor.getNome());
                     }
-                    break;
-                case "Cap. Fábio":
-                    //mesa.alteraRodada(true);
-                case "Matias":
-                    mesa.setJogadorDaVez(jogadorAdversario);
                     break;
                 case "Papa":
                     mesa.setEstadoJogo(true, jogadorAdversario);

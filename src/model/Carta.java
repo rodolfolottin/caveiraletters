@@ -28,6 +28,10 @@ public class Carta implements Jogada {
         this.image = image;
         this.quantidade = quantidade;
     }
+    
+    public Carta (String nome) {
+        this.nome = nome;
+    }
 
     public int getIndice() {
         return indice;
