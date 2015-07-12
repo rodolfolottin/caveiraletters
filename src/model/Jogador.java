@@ -14,10 +14,9 @@ import java.util.List;
  */
 public class Jogador implements Jogada {
     
-    private int id;
-    private String nome;
-    //private boolean imune;
-    private List<Carta> cartas;
+    protected int id;
+    protected String nome;
+    protected List<Carta> cartas;
     
     public Jogador(int id, String nome) {
         this.id = id;

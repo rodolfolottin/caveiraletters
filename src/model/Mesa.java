@@ -179,7 +179,6 @@ public class Mesa implements Jogada {
         } else {
             cartaJogada = this.rodadaAtual.getLances().get(index - 1).getCarta();
         }
-        
         return cartaJogada;
     }
     
@@ -204,9 +203,9 @@ public class Mesa implements Jogada {
     
     public void removeCartaDeJogador(Lance lance) {
         if (lance.getJogador().getNome().equals(this.getJogador1().getNome())) {
-            this.removeCartaJogador(jogador1, lance);
+            this.removeCartaJogador(getJogador1(), lance);
         } else {
-            this.removeCartaJogador(jogador2, lance);
+            this.removeCartaJogador(getJogador2(), lance);
         }
     }
     
@@ -217,6 +216,7 @@ public class Mesa implements Jogada {
                 List<Carta> temporaria = jogador.getCartas();
                 temporaria.remove(i);
                 jogador.setCartas(temporaria);
+                temporaria = null;
             }
         }
     }
@@ -255,8 +255,8 @@ public class Mesa implements Jogada {
         return nome.equalsIgnoreCase(jogador.getCartas().get(0).getNome());
     }
     
-    public Carta identificaCartaAdversario(Jogador jogador) {
-        return jogador.getCartas().get(0);
+    public String identificaNomeCartaAdversario(Jogador jogador) {
+        return jogador.getCartas().get(0).getNome();
     }
        
     public boolean verificaMaoJogadorParaJogada(Jogador jogador) {
@@ -271,7 +271,7 @@ public class Mesa implements Jogada {
     }
     
     
-    public Jogador identificaVencedor(Jogador jogador, Jogador jogadorAdversario) {
+    public Jogador compararCartas(Jogador jogador, Jogador jogadorAdversario) {
         if (jogador.getCartas().get(0).getNome().equals("Neto")) {
             if (jogador.getCartas().get(1).getValor() > jogadorAdversario.getCartas().get(0).getValor()) {
                 return jogador;
@@ -314,13 +314,11 @@ public class Mesa implements Jogada {
     }
     
     public void calculaVencedor(Rodada rodada) {
+        
         Jogador jogador1 = rodada.getLances().get(0).getJogador();
         Jogador jogador2 = rodada.getLances().get(1).getJogador();
         Carta cartaJogador1 = rodada.getLances().get(0).getCarta();
         Carta cartaJogador2 = rodada.getLances().get(1).getCarta();
-        //this.rodadaAtual.getLances().get(index - 1).getCarta();
-        System.out.println("Carta Jogador1: " + cartaJogador1.getNome());
-        System.out.println("Carta Jogador2: " + cartaJogador2.getNome());
         
         if (cartaJogador1.getValor() > cartaJogador2.getValor()) {
             setJogadorVencedor(jogador1);
@@ -333,5 +331,9 @@ public class Mesa implements Jogada {
     
     public Carta comprarCarta() {
         return this.getBaralho().getCartaAleatoria();
+    }
+    
+    public boolean isUltimaRodada() {
+        return this.isBaralhoVazio() && (this.getJogador1().getCartas().isEmpty() && this.getJogador2().getCartas().isEmpty());
     }
 }

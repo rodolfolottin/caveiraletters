@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Rodada implements Jogada {
     
-    private List<Lance> lances;
+    protected List<Lance> lances;
 
     public Rodada() {
     	lances = new ArrayList<Lance>();

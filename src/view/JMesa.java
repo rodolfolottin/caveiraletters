@@ -226,15 +226,15 @@ public class JMesa extends javax.swing.JFrame {
     public void recebeMesa(Mesa mesa) {
         if (mesa.getStatus().equals(Mesa.StatusMesa.INICAR_PARTIDA)) {
             this.iniciarPartida(mesa);
-            JOptionPane.showMessageDialog(this, "Uma nova partida vai iniciar");
+            this.exibeMensagem("Uma nova partida vai iniciar");
         } else if (mesa.getStatus().equals(Mesa.StatusMesa.INICIAR_RODADA)) {
             this.iniciarRodada(mesa);
         } else if (mesa.getStatus().equals(Mesa.StatusMesa.ENCERRAR_PARTIDA)) {
-            this.exibeMensagem("O jogador vencedor foi: " + mesa.getJogadorVencedor().getNome());
+            String nomeVencedor = mesa.getJogadorVencedor().getNome();
+            this.exibeMensagem("O jogador vencedor foi: " + nomeVencedor);
             this.limpaTodosCampos();   
             System.exit(0);
         }
-        this.validate();
     }
     
     private void iniciarPartida(Mesa mesa) {
@@ -269,7 +269,6 @@ public class JMesa extends javax.swing.JFrame {
         jLabelLixoCompartilhado.setIcon(null);
         jLabelJogadorCompartilhado.setIcon(null);
         jLabelAdversarioCompartilhado.setIcon(null);
-        //jPanelJogadorAdversario.setEnabled(false);
         jPanelJogadorAdversario.validate();
         jPanelJogadorAtual.validate();
         this.validate();
@@ -334,21 +333,22 @@ public class JMesa extends javax.swing.JFrame {
     }
     
     public void recebeLance(Lance lance) {
-        
         Jogador jogadorAtual = atorJogador.getJogadorAtual();
         if (lance.getJogador().getNome().equals(jogadorAtual.getNome())) {
             this.jLabelJogadorCompartilhado.setIcon(lance.getCarta().getImage());
         } else {
             this.jLabelAdversarioCompartilhado.setIcon(lance.getCarta().getImage());
             this.removeLabel(jPanelJogadorAdversario);
-        } 
-
-        this.validate();
+        }
     }
     
     private void removeLabel(JPanel panel) {
-        panel.remove(0);
-        panel.validate();
+        try {
+            panel.remove(0);
+            panel.validate();
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
     
     public String exibeDialogoAdivinho() {
