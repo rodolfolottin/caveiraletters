@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import model.AtorJogador;
 import model.Baralho;
 import model.Carta;
 import model.Jogador;
@@ -71,7 +70,7 @@ public class JMesa extends javax.swing.JFrame {
 
         jLabelBaralhoCompartilhado.addMouseListener(new MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                clicouBaralho(atorJogador.getMesa().getBaralho(), atorJogador.getJogadorAtual());
+                clicouBaralho(atorJogador.getController().getJogadorAtual());
             }
         });
 
@@ -306,7 +305,7 @@ public class JMesa extends javax.swing.JFrame {
         jLabelBaralhoCompartilhado.setIcon(image);
     }
     
-    private void clicouBaralho(Baralho baralho, Jogador jogando){
+    private void clicouBaralho(Jogador jogando){
         if (atorJogador.efetuarCompra(jogando)) {
             this.atualizaCartasJogadorAtual(jogando);
         }

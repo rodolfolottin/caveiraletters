@@ -154,7 +154,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabelBaralhoCompartilhado">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jLabelBaralhoCompartilhado.addMouseListener(new MouseAdapter() {&#xa;    public void mouseClicked(java.awt.event.MouseEvent e) {&#xa;        clicouBaralho(atorJogador.getMesa().getBaralho(), atorJogador.getJogadorAtual());&#xa;}  &#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jLabelBaralhoCompartilhado.addMouseListener(new MouseAdapter() {&#xa;    public void mouseClicked(java.awt.event.MouseEvent e) {&#xa;        clicouBaralho(atorJogador.getController().getJogadorAtual());&#xa;}  &#xa;});"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelLixoCompartilhado">

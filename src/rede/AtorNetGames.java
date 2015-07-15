@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.AtorJogador;
+import model.Controller;
 import model.Jogador;
 
 /**
@@ -26,10 +26,10 @@ import model.Jogador;
  */
 public class AtorNetGames implements OuvidorProxy{
     
-    private AtorJogador atorJogador;
+    private Controller atorJogador;
     private Proxy proxy;
     
-    public AtorNetGames(AtorJogador atorJogador) {
+    public AtorNetGames(Controller atorJogador) {
        super();
        this.atorJogador = atorJogador; 
        this.proxy = proxy.getInstance();

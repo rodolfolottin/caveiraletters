@@ -14,7 +14,7 @@ import view.JMesa;
  *
  * @author rodolfolottin
  */
-public class AtorJogador {
+public class Controller {
     
     protected Jogador jogadorAtual;
     protected Mesa mesa;
@@ -22,7 +22,7 @@ public class AtorJogador {
     protected boolean conectado;
     protected JMesa interfaceMesa;
     
-    public AtorJogador(JMesa j) {
+    public Controller(JMesa j) {
         this.rede = new AtorNetGames(this);
         this.mesa = new Mesa();
         this.interfaceMesa = j;
